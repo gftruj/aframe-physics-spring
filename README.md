@@ -14,7 +14,7 @@ Cannon.js spring class encapsulated in a AFRAME.component
 ```
 ## Attributes
 ```
-spring="target: t; restLength: 1; damping: 100; stiffness: 1"
+spring="target: #entity; restLength: 1; damping: 100; stiffness: 1"
 ```
 **target** - the other end of the spring <br>
 **restLength** - spring length when no forces applied <br>
