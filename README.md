@@ -7,6 +7,8 @@ Cannon.js spring class encapsulated in a AFRAME.component
 
 ## Usage
 ```
+<script src="https://cdn.rawgit.com/gftruj/aframe-physics-spring/c4645e7d/index.js"></script>
+....
 <a-box id="one" static-body></a-box>
 <a-box spring="target: #one"></box>
 ```
