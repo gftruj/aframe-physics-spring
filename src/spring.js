@@ -28,17 +28,19 @@ AFRAME.registerComponent("spring", {
   dependencies: ['physics'],
   multiple: true,
   init: function() {
-    let el = this.el
+    this.system = this.el.sceneEl.systems.physics
+    this.world = this.system.driver.world
     this.spring = null
-    if (this.el.body) {
-      this.createSpring()
-    } else {
-      this.el.addEventListener("body-loaded", () => {
-        this.createSpring()
-      })
-    }
   },
   update: function(oldData, newData) {
+    var el = this.el,
+    data = this.data;
+     
+    if (!el.body || !data.target.body) {
+      (el.body ? data.target : el).addEventListener('body-loaded', this.update.bind(this, {}));
+      return;
+    }
+    this.createSpring()
     this.updateSpring(oldData)
   },
   updateSpring: function(oldData) {
@@ -69,12 +71,27 @@ AFRAME.registerComponent("spring", {
       damping: 1,
     });
     // Compute the force after each step
-    this.el.sceneEl.systems.physics.driver.world.addEventListener("postStep", (event) => {
-      this.spring.applyForce();
-    });
+    this.world.addEventListener("postStep", this.updateSpringForce.bind(this, {}));
+  },
+  updateSpringForce: function() {
+    if (this.spring) {
+       this.spring.applyForce()
+    }
   },
   dataIsValid: function(data) {
     if (!data.target) return false
     return true
+  },
+  play: function() {
+    this.world.addEventListener("postStep", this.updateSpringForce.bind(this, {}));
+  },
+  pause: function() {
+    this.world.removeEventListener("postStep", this.updateSpringForce.bind(this, {}));
+  },
+  remove: function() {
+    this.world.removeEventListener("postStep", this.updateSpringForce.bind(this, {}));
+    if (this.spring)
+      delete this.spring
+      this.spring = null
   }
 })
