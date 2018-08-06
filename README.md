@@ -1,6 +1,9 @@
 # aframe-physics-spring
-Cannon.js spring class encapsulated in a AFRAME.component
 
+[![Version](https://img.shields.io/npm/v/aframe-physics-spring.svg?style=flat-square)](https://www.npmjs.com/package/aframe-physics-spring)
+![low far distance](screen.jpg)<br />
+
+Cannon.js spring class encapsulated in a AFRAME.component
 ## Requirements
 [aframe physics system](https://github.com/donmccurdy/aframe-physics-system) <br>
 [aframe](https://aframe.io/)
