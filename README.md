@@ -25,4 +25,5 @@ spring="target: #entity; restLength: 1; damping: 100; stiffness: 1"
 **stiffness** - how much will it suppress the force <br>
 
 ## Example
-[glitch example](https://aframe-physics-spring.glitch.me/)
+[example(https://cdn.rawgit.com/gftruj/aframe-physics-spring/2a5971cd/example/spring.html) with different attributes
+[glitch example](https://aframe-physics-spring.glitch.me/) with a timer changing the attributes over time and removing the component.
